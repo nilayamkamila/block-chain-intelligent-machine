@@ -17,14 +17,14 @@ import java.rmi.ServerException;
 import java.util.List;
 
 @RestController
-public class BookController {
+public class BlockChainIngestController {
 
     @Autowired
-    private BookService bookService;
+    private BlockChainService blockChainService;
 
     @GetMapping("/books")
-    public List<Book> findAll() {
-        return bookService.findAll();
+    public List<BlockChainData> findAll() {
+        return blockChainService.findAll();
     }
 
     @PostMapping(path = "/creditdata",

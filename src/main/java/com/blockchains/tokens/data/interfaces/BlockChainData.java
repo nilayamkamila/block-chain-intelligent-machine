@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-public class Book {
+public class BlockChainData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,16 +19,16 @@ public class Book {
     private Date publishDate;
 
     // for JPA only, no use
-    public Book() {
+    public BlockChainData() {
     }
 
-    public Book(String title, BigDecimal price, Date publishDate) {
+    public BlockChainData(String title, BigDecimal price, Date publishDate) {
         this.title = title;
         this.price = price;
         this.publishDate = publishDate;
     }
 
-    public Book(Long id, String title, BigDecimal price, Date publishDate) {
+    public BlockChainData(Long id, String title, BigDecimal price, Date publishDate) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -37,7 +37,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "BlockChainData{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", price=" + price +

@@ -17,8 +17,8 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.github.javafaker.Faker;
-import com.blockchains.tokens.data.interfaces.Book;
-import com.blockchains.tokens.data.interfaces.BookRepository;
+import com.blockchains.tokens.data.interfaces.BlockChainData;
+import com.blockchains.tokens.data.interfaces.BlockChainDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -45,7 +45,7 @@ public class StartApplication {
     }
 
     @Autowired
-    BookRepository bookRepository;
+    BlockChainDataRepository blockChainDataRepository;
 
     @Bean
     public AmazonKinesis buildAmazonKinesis() {
@@ -149,8 +149,8 @@ public class StartApplication {
         System.out.println("startUp Initialized - 1=2! Sent Success");
         return args -> {
 
-            bookRepository.save(
-                    new Book("Book A",
+            blockChainDataRepository.save(
+                    new BlockChainData("Book A",
                             BigDecimal.valueOf(9.99),
                             new Date())
             );
