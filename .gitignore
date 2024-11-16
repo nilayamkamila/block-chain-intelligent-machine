@@ -1,2 +1,6 @@
 *.class
 *.csv
+**/target/**
+target
+.classpath
+.settings
