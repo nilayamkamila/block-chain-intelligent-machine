@@ -40,6 +40,12 @@
             <artifactId>h2</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.blockchains.stream.data</groupId>
+            <artifactId>block-chain-stream-models</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <!-- Spring Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

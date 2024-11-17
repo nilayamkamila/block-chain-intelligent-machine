@@ -1,8 +1,10 @@
-package com.blockchains.tokens.data.models;
+package com.blockchains.stream.data.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.blockchains.stream.data.models.CoinUser;
 
-public class CryptoCurrency {
+import java.io.Serializable;
+
+public class CryptoCurrency implements Serializable {
     private String currencyId;
     private String code;
     private String name;
@@ -15,7 +17,7 @@ public class CryptoCurrency {
     private String md5;
     private String sha512;
     private CoinUser currentUser;
-
+    public CryptoCurrency(){}
     public CryptoCurrency(String currencyId
             , String code
             , String name
@@ -52,62 +54,51 @@ public class CryptoCurrency {
                 + volumeStocks + ","
                 + currentUser;
     }
-    @JsonProperty
+
     public String getCurrencyId() {
         return currencyId;
     }
 
-    @JsonProperty
     public String getCode() {
         return code;
     }
 
-    @JsonProperty
     public String getName() {
         return name;
     }
 
-    @JsonProperty
     public double getOpeningValue() {
         return openingValue;
     }
 
-    @JsonProperty
     public double getClosingValue() {
         return closingValue;
     }
 
-    @JsonProperty
     public double getHighestValue() {
         return highestValue;
     }
 
-    @JsonProperty
     public double getLowestValue() {
         return lowestValue;
     }
 
-    @JsonProperty
     public double getAdjClose() {
         return adjClose;
     }
 
-    @JsonProperty
     public long getVolumeStocks() {
         return volumeStocks;
     }
 
-    @JsonProperty
     public String getMd5() {
         return md5;
     }
 
-    @JsonProperty
     public String getSha512() {
         return sha512;
     }
 
-    @JsonProperty
     public CoinUser getCurrentUser() {
         return currentUser;
     }

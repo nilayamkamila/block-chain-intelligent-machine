@@ -10,6 +10,7 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
   <modules>
+    <module>block-chain-stream-models</module>
     <module>block-chain-stream-feeder</module>
     <module>block-chain-stream-processor</module>
   </modules>

@@ -1,9 +1,10 @@
-package com.blockchains.tokens.data.models;
+package com.blockchains.stream.data.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
 
-public class CreditData {
+import java.io.Serializable;
+
+public class CreditData implements Serializable {
     private String creditCardType;
     private String creditCardNumber;
     private String creditCardExpiry;
@@ -17,25 +18,19 @@ public class CreditData {
     }
 
     public CreditData(){
-
     }
-
-    @JsonProperty
     public String getCreditCardType() {
         return creditCardType;
     }
 
-    @JsonProperty
     public String getCreditCardNumber() {
         return creditCardNumber;
     }
 
-    @JsonProperty
     public String getCreditCardExpiry() {
         return creditCardExpiry;
     }
 
-    @JsonProperty
     public String getCreditCardActivity() {
         return creditCardActivity;
     }

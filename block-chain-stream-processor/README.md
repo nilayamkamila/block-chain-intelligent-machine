@@ -1,19 +1,25 @@
 # Spring Boot CommandLineRunner Example
 
-Article links
-* mvn clean install(https://github.com/nilayamkamila/block-chain-intelligent-machine.git/)
-* (https://github.com/nilayamkamila/block-chain-intelligent-machine.git/)
+##Article links
+* git clone https://github.com/nilayamkamila/block-chain-intelligent-machine.git/
+* mvn clean install
+
 
 ## Technologies used:
-Docker Install:
+* Docker
+* awslocal(localstack)
+* aws lambda
+
+##Docker Install:
+```
 https://docs.docker.com/desktop/setup/install/mac-install/
-
-To Install awslocal
+```
+##To Install awslocal
+```
 pip install awscli-local
+```
 
-Lambda Function Reference: https://www.baeldung.com/java-aws-lambda
-
-## How to run it
+## How to run it (Local)
 ```
 $ git clone  https://github.com/nilayamkamila/block-chain-intelligent-machine.git
 
@@ -33,12 +39,24 @@ localstack/localstack
 First Time Create Lambda Function:
 awslocal lambda create-function --function-name block-chain-stream-processor-lambda-function --runtime java17 --handler com.blockchains.stream.processor.handlers.LambdaHandler --role arn:aws:iam::000000000000:role/lambda-role --zip-file fileb://./target/block-chain-stream-processor-1.0.jar
 		   
-awslocal lambda invoke --function-name block-chain-stream-processor-lambda-function --cli-binary-format raw-in-base64-out --payload '{ "name":  "Name", "source": "How do I view articles ad-free and in dark mode on Baeldung?", "data": "Hello"}' output.txt
+awslocal lambda invoke --function-name block-chain-stream-processor-lambda-function --cli-binary-format raw-in-base64-out --payload file://src/main/resources/input.txt output.txt
 
 Next Time Update Lambda Function:
 awslocal lambda update-function-code --function-name  block-chain-stream-processor-lambda-function --zip-file fileb://./target/block-chain-stream-processor-1.0.jar
 
-awslocal lambda invoke --function-name block-chain-stream-processor-lambda-function --cli-binary-format raw-in-base64-out --payload '{ "name":  "Nilayam Kamila", "source": "How do I view articles ad-free and in dark mode on Baeldung?", "data": "Hello"}' output.txt
+awslocal lambda invoke --function-name block-chain-stream-processor-lambda-function --cli-binary-format raw-in-base64-out --payload file://src/main/resources/input.txt output.txt
 ```
 
+## How to run it (AWS)
+```
+First Time Create Lambda Function:
+aws lambda create-function --function-name block-chain-stream-processor-lambda-function --runtime java17 --handler com.blockchains.stream.processor.handlers.LambdaHandler --role arn:aws:iam::337550871092:role/AWS_SERVICE_ROLE --zip-file fileb://./target/block-chain-stream-processor-1.0.jar
+awslocal lambda invoke --function-name block-chain-stream-processor-lambda-function --cli-binary-format raw-in-base64-out --payload file://input.txt output.txt
 
+Next Time Update Lambda Function:
+aws lambda update-function-code --function-name  block-chain-stream-processor-lambda-function --zip-file fileb://./target/block-chain-stream-processor-1.0.jar
+aws lambda invoke --function-name block-chain-stream-processor-lambda-function --cli-binary-format raw-in-base64-out --payload file://src/main/resources/input.txt output.txt
+```
+###References:
+- https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis-example.html
+- https://www.baeldung.com/java-aws-lambda

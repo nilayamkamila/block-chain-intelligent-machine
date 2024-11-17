@@ -5,9 +5,10 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>block-chain-stream-processor</artifactId>
+    <artifactId>block-chain-stream-models</artifactId>
+    <groupId>com.blockchains.stream.data</groupId>
     <packaging>jar</packaging>
-    <name>Block Chain Feeder Processor</name>
+    <name>Block Chain Data Models</name>
     <version>1.0</version>
 
     <parent>
@@ -22,35 +23,20 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-lambda-java-core</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-events -->
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-lambda-java-events</artifactId>
-            <version>3.14.0</version>
-        </dependency>
+        <!-- Spring Web MVC -->
 
         <dependency>
-            <groupId>com.blockchains.stream.data</groupId>
-            <artifactId>block-chain-stream-models</artifactId>
-            <version>1.0</version>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.15</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
+            <artifactId>jackson-annotations</artifactId>
             <version>2.18.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.18.1</version>
-        </dependency>
+
 
     </dependencies>
 

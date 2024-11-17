@@ -1,10 +1,9 @@
-package com.blockchains.tokens.data.models;
+package com.blockchains.stream.data.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import java.io.Serializable;
 import java.util.Date;
 
-public final class CoinUser {
+public final class CoinUser implements Serializable {
     private String userIdentity;
     private String userName;
     private Date userCreated;
@@ -16,52 +15,43 @@ public final class CoinUser {
     private double userCreditRating;
     private CreditData[] creditData;
 
-    @JsonProperty
+    public CoinUser(){}
     public String getUserIdentity() {
         return userIdentity;
     }
 
-    @JsonProperty
     public String getUserName() {
         return userName;
     }
 
-    @JsonProperty
     public Date getUserCreated() {
         return userCreated;
     }
 
-    @JsonProperty
     public long getUserFollowers() {
         return userFollowers;
     }
 
-    @JsonProperty
     public long getUserFriends() {
         return userFriends;
     }
 
-    @JsonProperty
     public String getUserVerified() {
         return userVerified;
     }
 
-    @JsonProperty
     public String getUserLocation() {
         return userLocation;
     }
 
-    @JsonProperty
     public String getUserText() {
         return userText;
     }
 
-    @JsonProperty
     public double getUserCreditRating() {
         return userCreditRating;
     }
 
-    @JsonProperty
     public CreditData[] getCreditData() {
         return creditData;
     }

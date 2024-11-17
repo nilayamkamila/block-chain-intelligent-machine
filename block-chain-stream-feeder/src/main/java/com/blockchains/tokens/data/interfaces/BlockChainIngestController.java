@@ -1,7 +1,7 @@
 package com.blockchains.tokens.data.interfaces;
 
 
-import com.blockchains.tokens.data.models.CreditData;
+import com.blockchains.stream.data.models.CreditData;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -38,7 +38,5 @@ public class BlockChainIngestController {
                     .toUri();
             return ResponseEntity.created(location).body(creditData);
     }
-
-
 }
 

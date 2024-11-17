@@ -1,14 +1,16 @@
-package com.blockchains.tokens.data.models;
+package com.blockchains.stream.data.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 
-public class CryptoCoinUserToken {
+public class CryptoCoinUserToken implements Serializable {
     CryptoCurrency cryptoCurrency;
     double assignedId;
     String certifiedAuthority;
     boolean certifiedAuthorityTrusted;
     boolean tokenTrusted;
     String signature;
+
+    public CryptoCoinUserToken(){}
 
     public CryptoCoinUserToken(
             CryptoCurrency cryptoCurrency
@@ -38,27 +40,22 @@ public class CryptoCoinUserToken {
         return signature;
     }
 
-    @JsonProperty
     public CryptoCurrency getCryptoCurrency() {
         return cryptoCurrency;
     }
 
-    @JsonProperty
     public double getAssignedId() {
         return assignedId;
     }
 
-    @JsonProperty
     public String getCertifiedAuthority() {
         return certifiedAuthority;
     }
 
-    @JsonProperty
     public boolean isCertifiedAuthorityTrusted() {
         return certifiedAuthorityTrusted;
     }
 
-    @JsonProperty
     public boolean isTokenTrusted() {
         return tokenTrusted;
     }

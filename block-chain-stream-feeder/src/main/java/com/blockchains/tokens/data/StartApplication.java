@@ -7,10 +7,10 @@ import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.AmazonKinesisClientBuilder;
 import com.amazonaws.services.kinesis.model.PutRecordsRequest;
 import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
-import com.blockchains.tokens.data.models.CoinUser;
-import com.blockchains.tokens.data.models.CreditData;
-import com.blockchains.tokens.data.models.CryptoCoinUserToken;
-import com.blockchains.tokens.data.models.CryptoCurrency;
+import com.blockchains.stream.data.models.CoinUser;
+import com.blockchains.stream.data.models.CreditData;
+import com.blockchains.stream.data.models.CryptoCoinUserToken;
+import com.blockchains.stream.data.models.CryptoCurrency;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
@@ -49,7 +49,7 @@ public class StartApplication {
 
     @Bean
     public AmazonKinesis buildAmazonKinesis() {
-        BasicAWSCredentials awsCredentials = new BasicAWSCredentials("", "");
+        BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIAU5F4ZRI2FIM2EJEJ", "r8W92m96PVF07b1otLh7kHYsSj2NGTO1HyVODxPu");
         return AmazonKinesisClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
                 .withRegion(Regions.US_EAST_1)
@@ -71,7 +71,7 @@ public class StartApplication {
         System.out.println("startUp Initialized - 1!" + buildAmazonKinesis());
         BufferedWriter writer = null;
 
-        List<PutRecordsRequestEntry> entries = IntStream.range(1, 200).mapToObj(ipSuffix -> {
+        List<PutRecordsRequestEntry> entries = IntStream.range(1, 101).mapToObj(ipSuffix -> {
             PutRecordsRequestEntry entry = new PutRecordsRequestEntry();
             CryptoCoinUserToken cryptoCoinUserToken2 = getCryptoCoinUserToken();
 
@@ -115,9 +115,13 @@ public class StartApplication {
                 ex.printStackTrace();
             }
             try {
-                entry.setData(ByteBuffer.wrap((objectMapper()
-                        .writeValueAsString(cryptoCoinUserToken2)).getBytes()));
-                entry.setPartitionKey("1234");
+                String objectValue = objectMapper()
+                        .writeValueAsString(cryptoCoinUserToken2);
+                entry.setData(ByteBuffer.wrap(
+                        (objectValue).getBytes()));
+                entry.setPartitionKey("10001");
+                CryptoCoinUserToken cryptoCoinUserToken3= new ObjectMapper().readValue(objectValue, CryptoCoinUserToken .class);
+                System.out.println(cryptoCoinUserToken3.getSignature());
             }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -142,7 +146,7 @@ public class StartApplication {
 
 
         PutRecordsRequest createRecordsRequest = new PutRecordsRequest();
-        createRecordsRequest.setStreamName("<Your Stream Name>");
+        createRecordsRequest.setStreamName("blockchain-kinesis-data-stream");
         createRecordsRequest.setRecords(entries);
 
         buildAmazonKinesis().putRecords(createRecordsRequest);
