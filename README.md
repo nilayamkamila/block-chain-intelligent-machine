@@ -1,32 +1,21 @@
-# Block Chain Intelligent Machine(In Progress)
+# Block Chain Machine Learning(In Progress)
 
-Article links
-* mvn clean install(https://github.com/nilayamkamila/block-chain-stream-process.git/)
-* (https://github.com/nilayamkamila/block-chain-stream-process.git/)
+##Article links
+
+* https://github.com/nilayamkamila/block-chain-intelligent-machine
 
 ## Technologies used:
-* Spring Boot 3.1.2
-* Spring Data JPA
-* H2 in-memory database
-* Java 17
-* Kinesis Stream
-
+* anaconda3
+* jupyter_mac
 ## How to run it
 ```
-
-$ git clone  https://github.com/nilayamkamila/block-chain-stream-process.git
-
-$ cd block-token-stream-process
-
-$ ./mvnw spring-boot:run
-
+export KMP_DUPLICATE_LIB_OK=TRUE 
+cd block-chain-machine-learning && /opt/anaconda3/bin/jupyter_mac.command
+http://localhost:8888/tree
 ```
+###References
 ```
-Create a Kinesis Steam and provide the name 
-Refer: createRecordsRequest.setStreamName("<Your Stream Name>");
-Provide your access key and secret key in StartApplication.java
-Refer: BasicAWSCredentials awsCredentials = new BasicAWSCredentials("<Your Access Key>", "<Your Secret Key>");;
-
+https://docs.anaconda.com/anaconda/install/mac-os/
 ```
 
 

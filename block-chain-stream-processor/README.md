@@ -1,4 +1,4 @@
-# Spring Boot CommandLineRunner Example
+# Block Chain Stream Processor
 
 ##Article links
 * git clone https://github.com/nilayamkamila/block-chain-intelligent-machine.git/
