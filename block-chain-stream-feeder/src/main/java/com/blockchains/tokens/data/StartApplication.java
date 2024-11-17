@@ -49,7 +49,7 @@ public class StartApplication {
 
     @Bean
     public AmazonKinesis buildAmazonKinesis() {
-        BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIAU5F4ZRI2FIM2EJEJ", "r8W92m96PVF07b1otLh7kHYsSj2NGTO1HyVODxPu");
+        BasicAWSCredentials awsCredentials = new BasicAWSCredentials("<Your Access Key>", "<Your Secret Key>");
         return AmazonKinesisClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
                 .withRegion(Regions.US_EAST_1)
@@ -146,7 +146,7 @@ public class StartApplication {
 
 
         PutRecordsRequest createRecordsRequest = new PutRecordsRequest();
-        createRecordsRequest.setStreamName("blockchain-kinesis-data-stream");
+        createRecordsRequest.setStreamName("<Your Stream Name>");
         createRecordsRequest.setRecords(entries);
 
         buildAmazonKinesis().putRecords(createRecordsRequest);
