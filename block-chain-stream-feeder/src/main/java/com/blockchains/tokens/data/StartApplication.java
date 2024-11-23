@@ -1,7 +1,10 @@
 package com.blockchains.tokens.data;
 
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSCredentialsProviderChain;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.AmazonKinesisClientBuilder;
@@ -49,9 +52,9 @@ public class StartApplication {
 
     @Bean
     public AmazonKinesis buildAmazonKinesis() {
-        BasicAWSCredentials awsCredentials = new BasicAWSCredentials("<Your Access Key>", "<Your Secret Key>");
+        ProfileCredentialsProvider awsCredentials = new ProfileCredentialsProvider();
         return AmazonKinesisClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+                .withCredentials(new AWSCredentialsProviderChain(awsCredentials))
                 .withRegion(Regions.US_EAST_1)
                 .build();
     }
@@ -146,10 +149,10 @@ public class StartApplication {
 
 
         PutRecordsRequest createRecordsRequest = new PutRecordsRequest();
-        createRecordsRequest.setStreamName("<Your Stream Name>");
+        createRecordsRequest.setStreamName("blockchain-kinesis-data-stream");
         createRecordsRequest.setRecords(entries);
 
-        buildAmazonKinesis().putRecords(createRecordsRequest);
+        //buildAmazonKinesis().putRecords(createRecordsRequest);
         System.out.println("startUp Initialized - 1=2! Sent Success");
         return args -> {
 
