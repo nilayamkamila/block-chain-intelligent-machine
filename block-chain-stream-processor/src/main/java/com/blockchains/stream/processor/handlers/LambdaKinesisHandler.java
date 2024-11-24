@@ -5,8 +5,12 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.KinesisEvent;
 import com.blockchains.stream.data.models.CryptoCoinUserToken;
+import com.blockchains.stream.processor.utils.S3ClientObjectUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LambdaKinesisHandler implements RequestHandler<KinesisEvent, Response> {
 
@@ -19,10 +23,12 @@ public class LambdaKinesisHandler implements RequestHandler<KinesisEvent, Respon
             logger.log("Empty Kinesis Event received");
             return null;
         }
+        List<CryptoCoinUserToken> listCryptoCoinUserToken = new ArrayList<>();
         for (KinesisEvent.KinesisEventRecord record : event.getRecords()) {
             try {
                 String data = new String(record.getKinesis().getData().array());
                 CryptoCoinUserToken cryptoCoinUserToken= new ObjectMapper().readValue(data, CryptoCoinUserToken.class);
+                listCryptoCoinUserToken.add(cryptoCoinUserToken);
                 response = new Response("eventId: "
                         + record.getEventID()
                         + "\neventSource: "
@@ -54,6 +60,8 @@ public class LambdaKinesisHandler implements RequestHandler<KinesisEvent, Respon
                 response = new Response(ex.getMessage());
             }
         }
+
+        S3ClientObjectUtility.uploadObjects(listCryptoCoinUserToken);
         logger.log("Successfully processed:"+event.getRecords().size()+" records");
         return response;
     }

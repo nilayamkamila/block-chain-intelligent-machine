@@ -142,6 +142,7 @@ public class StartApplication {
             }
             writer.close();
         }catch(Exception ex){
+            System.out.println("Error::" + ex.getMessage());
 
         }finally{
 
