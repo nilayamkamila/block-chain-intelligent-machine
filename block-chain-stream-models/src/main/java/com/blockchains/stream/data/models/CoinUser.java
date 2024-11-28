@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public final class CoinUser implements Serializable {
+    private static final long serialVersionUID = 8145257839787754634L;
     private String userIdentity;
     private String userName;
     private Date userCreated;

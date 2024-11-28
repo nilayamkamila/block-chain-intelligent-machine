@@ -1,3 +1,4 @@
+
 package com.blockchains.stream.processor.handlers;
 
 import com.amazonaws.services.lambda.runtime.Context;
@@ -5,7 +6,6 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.KinesisEvent;
 import com.blockchains.stream.data.models.CryptoCoinUserToken;
-import com.blockchains.stream.processor.utils.S3ClientObjectUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -61,8 +61,7 @@ public class LambdaKinesisHandler implements RequestHandler<KinesisEvent, Respon
             }
         }
 
-        S3ClientObjectUtility.uploadObjects(listCryptoCoinUserToken);
-        logger.log("Successfully processed:"+event.getRecords().size()+" records");
+
         return response;
     }
 }

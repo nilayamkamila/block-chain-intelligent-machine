@@ -5,6 +5,7 @@ import com.blockchains.stream.data.models.CoinUser;
 import java.io.Serializable;
 
 public class CryptoCurrency implements Serializable {
+    private static final long serialVersionUID = 8145257839787754637L;
     private String currencyId;
     private String code;
     private String name;

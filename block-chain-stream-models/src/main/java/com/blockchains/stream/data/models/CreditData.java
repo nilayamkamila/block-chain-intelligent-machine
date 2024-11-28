@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import java.io.Serializable;
 
 public class CreditData implements Serializable {
+    private static final long serialVersionUID = 8145257839787754635L;
     private String creditCardType;
     private String creditCardNumber;
     private String creditCardExpiry;

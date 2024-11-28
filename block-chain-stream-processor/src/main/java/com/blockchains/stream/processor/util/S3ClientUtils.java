@@ -1,29 +1,30 @@
-package com.blockchains.stream.processor.utils;
+package com.blockchains.stream.processor.util;
 
 import com.blockchains.stream.data.models.CryptoCoinUserToken;
-import com.blockchains.stream.processor.client.S3ClientObject;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
 
-public class S3ClientObjectUtility {
+@Component
+public class S3ClientUtils {
 
-    private static S3ClientObject s3ClientObject = new S3ClientObject();
+    @Autowired
+    private S3Client s3Client;
+
     private static final String bucketName = "blockchain-kinesis-data-stream";
     private static final String key = "blockchain-kinesis-data-stream-realtime.csv";
     /*public static void main(String[] args){
         boolean uploadedStstus = uploadObjects("Hello", "blockchain-kinesis");
         System.out.println(uploadedStstus);
     }*/
-    public static boolean uploadObjects(List<CryptoCoinUserToken> listCryptoCoinUserTokens){
+    public boolean uploadObjects(List<CryptoCoinUserToken> listCryptoCoinUserTokens){
         try
         {
             String data = StringUtils.EMPTY;
@@ -38,7 +39,7 @@ public class S3ClientObjectUtility {
                     .key(key)
                     .build();
             PutObjectResponse putObjectResponse =
-                    s3ClientObject.getS3Client().putObject(putOb, RequestBody.fromBytes(contentAsBytes));
+                    s3Client.putObject(putOb, RequestBody.fromBytes(contentAsBytes));
             return true;
         } catch(Exception ex)
         {

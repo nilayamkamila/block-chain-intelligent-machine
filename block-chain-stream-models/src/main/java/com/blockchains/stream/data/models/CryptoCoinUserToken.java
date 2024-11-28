@@ -3,6 +3,7 @@ package com.blockchains.stream.data.models;
 import java.io.Serializable;
 
 public class CryptoCoinUserToken implements Serializable {
+    private static final long serialVersionUID = 8145257839787754636L;
     CryptoCurrency cryptoCurrency;
     double assignedId;
     String certifiedAuthority;

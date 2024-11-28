@@ -153,7 +153,7 @@ public class StartApplication {
         createRecordsRequest.setStreamName("blockchain-kinesis-data-stream");
         createRecordsRequest.setRecords(entries);
 
-        //buildAmazonKinesis().putRecords(createRecordsRequest);
+        buildAmazonKinesis().putRecords(createRecordsRequest);
         System.out.println("startUp Initialized - 1=2! Sent Success");
         return args -> {
 
