@@ -9,14 +9,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
-public class Lambda {
-
-    LambdaLogger logger = null;
+public class LambdaEntry{
 
     private final ApplicationContext appContext;
     private final ConfigurableEnvironment environment;
 
-    public Lambda() {
+    public LambdaEntry() {
         final SpringApplicationBuilder builder = new SpringApplicationBuilder(Application.class)
                 .logStartupInfo(false);
         appContext = builder.build().run();
