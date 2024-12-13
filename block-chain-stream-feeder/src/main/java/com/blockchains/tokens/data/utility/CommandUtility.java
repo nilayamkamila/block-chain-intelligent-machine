@@ -5,6 +5,8 @@ import com.amazonaws.services.kinesis.model.PutRecordsRequest;
 import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
 import com.blockchains.stream.data.models.CryptoCoinUserToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,9 @@ import java.util.stream.IntStream;
 
 @Component
 public class CommandUtility {
+
+    private final Logger LOG = LoggerFactory.getLogger(CommandUtility.class);
+
     @Autowired
     ObjectMapper objectMapper;
 
@@ -29,7 +34,7 @@ public class CommandUtility {
         PutRecordsRequest createRecordsRequest = new PutRecordsRequest();
         createRecordsRequest.setStreamName("blockchain-kinesis-data-stream");
         createRecordsRequest.setRecords(entries);
-        //amazonKinesis.putRecords(createRecordsRequest);
+        amazonKinesis.putRecords(createRecordsRequest);
         System.out.println("startUp Initialized - 1=2! Sent Success");
     }
 
