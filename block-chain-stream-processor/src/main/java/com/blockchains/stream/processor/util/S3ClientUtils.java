@@ -27,8 +27,7 @@ public class S3ClientUtils {
     public boolean uploadObjects(List<CryptoCoinUserToken> listCryptoCoinUserTokens){
         try
         {
-            String data = "currencyId,openingValue,closingValue,highestValue,lowestValue,adjClose,volumeStocks,userIdentity,userFollowers,userFriends,userFollowers,userVerified,userLocation,userCreditRating,certifiedAuthorityTrusted,tokenTrusted\n";
-            //listCryptoCoinUserTokens.stream().forEach(rowData-> data += rowData + "\n");
+            String data = "currencyId,openingValue,closingValue,highestValue,lowestValue,adjClose,volumeStocks,userIdentity,userFollowers,userFriends,userVerified,userLocation,userCreditRating,certifiedAuthorityTrusted,tokenTrusted\n";
             for (CryptoCoinUserToken cryptoCoinUserToken:listCryptoCoinUserTokens) {
                 data += cryptoCoinUserToken + "\n";
             }

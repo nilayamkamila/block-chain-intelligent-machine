@@ -59,17 +59,20 @@ aws lambda add-permission \
 --statement-id load-balancer \
 --principal elasticloadbalancing.amazonaws.com \
 --action lambda:InvokeFunction \
---source-arn arn:aws:elasticloadbalancing:us-east-1:337550871092:targetgroup/albtargets-proxy-ingester-aws/4530c6578b2e9c6a
+--source-arn arn:aws:elasticloadbalancing:us-east-1:337550871092:targetgroup/albtargets-proxy-ingester-aws/55fb3ba0d02ec8b7
+
 aws elbv2 register-targets \
---target-group-arn arn:aws:elasticloadbalancing:us-east-1:337550871092:targetgroup/albtargets-proxy-ingester-aws/4530c6578b2e9c6a \
+--target-group-arn arn:aws:elasticloadbalancing:us-east-1:337550871092:targetgroup/albtargets-proxy-ingester-aws/55fb3ba0d02ec8b7 \
 --targets Id=arn:aws:lambda:us-east-1:337550871092:function:block-chain-stream-proxy-ingester-aws
 
-aws elbv2 modify-target-group-attributes --target-group-arn arn:aws:elasticloadbalancing:us-east-1:337550871092:targetgroup/albtargets-proxy-ingester-aws/4530c6578b2e9c6a --attributes Key=lambda.multi_value_headers.enabled,Value=true
+aws elbv2 modify-target-group-attributes --target-group-arn arn:aws:elasticloadbalancing:us-east-1:337550871092:targetgroup/albtargets-proxy-ingester-aws/55fb3ba0d02ec8b7 --attributes Key=lambda.multi_value_headers.enabled,Value=true
 
 aws elbv2 create-load-balancer --name alb-proxy-ingester-aws \
 --subnets subnet-0aeafdd11dc32c1e1 subnet-075c16114dcef8324 --security-groups sg-b01457d7
 
-aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:us-east-1:337550871092:loadbalancer/app/alb-proxy-ingester-aws/bd4937876ed721ce \
+"DNSName": "alb-proxy-ingester-aws-1005051216.us-east-1.elb.amazonaws.com"
+
+aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:us-east-1:337550871092:loadbalancer/app/alb-proxy-ingester-aws/648aa5514935961f \
 --protocol HTTP --port 80  \
---default-actions Type=forward,TargetGroupArn=arn:aws:elasticloadbalancing:us-east-1:337550871092:targetgroup/albtargets-proxy-ingester-aws/4530c6578b2e9c6a
+--default-actions Type=forward,TargetGroupArn=arn:aws:elasticloadbalancing:us-east-1:337550871092:targetgroup/albtargets-proxy-ingester-aws/55fb3ba0d02ec8b7
 ```

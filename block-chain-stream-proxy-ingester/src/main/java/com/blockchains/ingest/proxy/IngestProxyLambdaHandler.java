@@ -10,10 +10,12 @@ import com.amazonaws.serverless.proxy.model.AwsProxyResponse;
 import com.amazonaws.serverless.proxy.spring.SpringBootLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
+import org.springframework.context.annotation.Bean;
 
 
 public class IngestProxyLambdaHandler implements RequestStreamHandler{
 
+    private static Context context;
     private static SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
     static {
         try {
@@ -28,6 +30,15 @@ public class IngestProxyLambdaHandler implements RequestStreamHandler{
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context)
             throws IOException {
+        this.context = context;
+        context.getLogger().log("IngestProxyLambdaHandler:handleRequest Initated");
         handler.proxyStream(inputStream, outputStream, context);
+        context.getLogger().log("IngestProxyLambdaHandler:handleRequest Completed");
     }
+
+    public static Context getContext(){
+        return context;
+    }
+
+
 }

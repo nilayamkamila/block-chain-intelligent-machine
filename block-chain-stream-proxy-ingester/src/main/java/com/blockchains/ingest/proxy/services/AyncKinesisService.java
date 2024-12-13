@@ -3,6 +3,7 @@ package com.blockchains.ingest.proxy.services;
 import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.model.PutRecordsRequest;
 import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
+import com.blockchains.ingest.proxy.IngestProxyLambdaHandler;
 import com.blockchains.ingest.proxy.exceptions.ProxyAsyncRuntimeException;
 import com.blockchains.ingest.proxy.exceptions.ProxyException;
 import com.blockchains.ingest.proxy.utils.ProxyConstants;
@@ -50,8 +51,10 @@ public class AyncKinesisService implements IAsyncService{
         PutRecordsRequest createRecordsRequest = new PutRecordsRequest();
         createRecordsRequest.setStreamName("blockchain-kinesis-data-stream");
         createRecordsRequest.setRecords(Collections.singletonList(entry));
+
         amazonKinesis.putRecords(createRecordsRequest);
         LOG.info("Completed CryptoCoinUserToken Process for the Currency Id: {} ", cryptoCoinUserToken.getCryptoCurrency().getCurrencyId());
+        IngestProxyLambdaHandler.getContext().getLogger().log("AyncKinesisService Completed CryptoCoinUserToken Process for the Currency Id: " + cryptoCoinUserToken.getCryptoCurrency().getCurrencyId());
         return CompletableFuture.completedFuture("Processing CryptoCoinUserToken Completed");
     }
 }

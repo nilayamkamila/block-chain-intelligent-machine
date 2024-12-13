@@ -83,7 +83,6 @@ public final class CoinUser implements Serializable {
         return userIdentity + ","
                 + userFollowers + ","
                 + userFriends + ","
-                + userFollowers + ","
                 + userVerified + ","
                 + userLocation + ","
                 + userCreditRating;

@@ -8,5 +8,6 @@ public class ProxyConstants {
     public static final String CURRENCY_LOWEST_VALUE_NOT_FOUND = "Currency Lowest Value Not Found in Proxy Request";
     public static final String CURRENCY_STOCK_VOLUME_VALUE_NOT_FOUND = "Currency Stock Volumes Value Not Found in Proxy Request";
     public static final String APPLICATION_ASYNC_EXCEPTION = "Async Exception Occurred";
+    public static final String STREAM_WRITE_TIMEOUT_FAILED = "Stream Write Attempt Failed in 30 Secs";
 }
 
