@@ -1,7 +1,7 @@
 package com.blockchains.stream.processor.util;
 
 import com.blockchains.stream.data.models.CryptoCoinUserToken;
-import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -10,6 +10,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import java.io.ByteArrayInputStream;
+import java.text.MessageFormat;
 import java.util.List;
 
 @Component
@@ -19,11 +20,8 @@ public class S3ClientUtils {
     private S3Client s3Client;
 
     private static final String bucketName = "blockchain-kinesis-data-stream";
-    private static final String key = "blockchain-kinesis-data-stream-realtime.csv";
-    /*public static void main(String[] args){
-        boolean uploadedStstus = uploadObjects("Hello", "blockchain-kinesis");
-        System.out.println(uploadedStstus);
-    }*/
+    private static final String key = "blockchain-kinesis-data-stream-realtime";
+
     public boolean uploadObjects(List<CryptoCoinUserToken> listCryptoCoinUserTokens){
         try
         {
@@ -35,7 +33,7 @@ public class S3ClientUtils {
             ByteArrayInputStream contentsAsStream = new ByteArrayInputStream(contentAsBytes);
             PutObjectRequest putOb = PutObjectRequest.builder()
                     .bucket(bucketName)
-                    .key(key)
+                    .key(key+ "-" + getFileName())
                     .build();
             PutObjectResponse putObjectResponse =
                     s3Client.putObject(putOb, RequestBody.fromBytes(contentAsBytes));
@@ -45,5 +43,9 @@ public class S3ClientUtils {
             System.out.println(ex.getMessage());
             return false;
         }
+    }
+    String getFileName() {
+        String currentTime = DateTime.now().toString("yyyy-MM-dd:HH:mm:ss");
+        return MessageFormat.format("{0}.csv", currentTime);
     }
 }

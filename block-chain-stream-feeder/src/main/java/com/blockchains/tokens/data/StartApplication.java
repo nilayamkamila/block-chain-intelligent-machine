@@ -34,7 +34,7 @@ public class StartApplication implements CommandLineRunner{
     @Override
     public void run(String... args) {
         LOG.info("EXECUTING : command line runner");
-        commandUtility.executeProcess();
+        commandUtility.executeProcess(2000);
         appUtility.executeProcess();
         LOG.info("COMPLETED : command line runner");
     }
